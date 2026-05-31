@@ -6,14 +6,15 @@ import (
 	"os/signal"
 
 	"github.com/opoccomaxao/gopkg/pkg/services/ginserver"
+	"github.com/opoccomaxao/gopkg/pkg/services/gormdb"
 	"github.com/opoccomaxao/gopkg/pkg/services/lifecycle"
 	"github.com/opoccomaxao/gopkg/pkg/services/logger"
 	"github.com/opoccomaxao/gopkg/pkg/services/tasks"
 	"github.com/opoccomaxao/perchance-image-lab/pkg/api"
 	"github.com/opoccomaxao/perchance-image-lab/pkg/config"
+	"github.com/opoccomaxao/perchance-image-lab/pkg/migrations"
 )
 
-//nolint:wrapcheck
 func Run() error {
 	appCtx, appCancelCause := context.WithCancelCause(context.Background())
 	defer appCancelCause(nil)
@@ -33,6 +34,23 @@ func Run() error {
 		appCancelCause,
 		logger,
 	)
+
+	db, err := gormdb.MakePackage(
+		config.DB,
+		logger,
+	)
+	if err != nil {
+		logger.Error(err)
+
+		return err
+	}
+
+	err = migrations.AutoMigrate(appCtx, db.DB)
+	if err != nil {
+		logger.Error(err)
+
+		return err
+	}
 
 	tasks := tasks.MakePackage(
 		config.Tasks,

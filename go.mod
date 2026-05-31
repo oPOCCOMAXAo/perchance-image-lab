@@ -5,11 +5,12 @@ go 1.26.0
 require (
 	github.com/caarlos0/env/v11 v11.4.1
 	github.com/gin-gonic/gin v1.12.0
-	github.com/opoccomaxao/gopkg v0.0.0-20260531223607-8fe10f60a874
+	github.com/opoccomaxao/gopkg v0.0.0-20260531224717-6966a24f4719
 	github.com/pkg/errors v0.9.1
 	github.com/swaggo/files v1.0.1
 	github.com/swaggo/gin-swagger v1.6.1
 	github.com/swaggo/swag v1.16.6
+	gorm.io/gorm v1.31.1
 )
 
 require (
@@ -67,5 +68,4 @@ require (
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gorm.io/driver/mysql v1.6.0 // indirect
 	gorm.io/driver/sqlite v1.6.0 // indirect
-	gorm.io/gorm v1.31.1 // indirect
 )
