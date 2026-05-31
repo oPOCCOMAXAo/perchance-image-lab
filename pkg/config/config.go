@@ -1,0 +1,35 @@
+package config
+
+import (
+	"github.com/caarlos0/env/v11"
+	"github.com/opoccomaxao/gopkg/pkg/services/ginserver"
+	"github.com/opoccomaxao/gopkg/pkg/services/gormdb"
+	"github.com/opoccomaxao/gopkg/pkg/services/lifecycle"
+	"github.com/opoccomaxao/gopkg/pkg/services/logger"
+	"github.com/opoccomaxao/gopkg/pkg/services/tasks"
+	"github.com/opoccomaxao/perchance-image-lab/pkg/api"
+	"github.com/pkg/errors"
+)
+
+type Config struct {
+	Logger    logger.Config    `envPrefix:"LOGGER_"`
+	Lifecycle lifecycle.Config `envPrefix:"LIFECYCLE_"`
+	Server    ginserver.Config `envPrefix:"SERVER_"`
+	DB        gormdb.Config    `envPrefix:"DB_"`
+	Tasks     tasks.Config     `envPrefix:"TASKS_"`
+	API       api.Config       `envPrefix:"API_"`
+}
+
+func Load() (*Config, error) {
+	var res Config
+
+	err := env.ParseWithOptions(&res, env.Options{
+		RequiredIfNoDef:       false,
+		UseFieldNameByDefault: false,
+	})
+	if err != nil {
+		return nil, errors.WithStack(err)
+	}
+
+	return &res, nil
+}
