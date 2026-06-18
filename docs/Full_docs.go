@@ -50,7 +50,7 @@ var SwaggerInfoFull = &swag.Spec{
 	BasePath:         "/",
 	Schemes:          []string{},
 	Title:            "Perchance Image Lab API",
-	Description:      "API documentation for the WEED server.",
+	Description:      "API documentation for the Perchance Image Lab server.",
 	InfoInstanceName: "Full",
 	SwaggerTemplate:  docTemplateFull,
 	LeftDelim:        "{{",

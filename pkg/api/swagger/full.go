@@ -12,7 +12,7 @@ import (
 //
 //	@title						Perchance Image Lab API
 //	@version					1.0
-//	@description				API documentation for the WEED server.
+//	@description				API documentation for the Perchance Image Lab server.
 //	@termsOfService				http://swagger.io/terms/
 //	@BasePath					/
 //	@externalDocs.description	OpenAPI
